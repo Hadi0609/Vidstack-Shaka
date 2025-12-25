@@ -1,0 +1,16 @@
+import '../chunks/vidstack-CpV7Zq0v.js';
+import '../chunks/vidstack-BINCQrRV.js';
+import '../chunks/vidstack-Wn3NH5Sg.js';
+import '../chunks/vidstack-DLU3cjcp.js';
+import '@floating-ui/dom';
+import '../chunks/vidstack-BvWwluXZ.js';
+import 'lit-html';
+import 'lit-html/directives/if-defined.js';
+import 'lit-html/directives/unsafe-svg.js';
+import 'lit-html/async-directive.js';
+import '../chunks/vidstack-CwTj4H1w.js';
+import 'lit-html/directives/ref.js';
+import 'lit-html/directives/keyed.js';
+import '../chunks/vidstack-BOTZD4tC.js';
+import '../chunks/vidstack-DCNhZo_1.js';
+import 'lit-html/directives/unsafe-html.js';
