@@ -9,6 +9,7 @@ import type { AudioProvider } from './audio/provider';
 import type { DASHProvider } from './dash/provider';
 import type { GoogleCastProvider } from './google-cast/provider';
 import type { HLSProvider } from './hls/provider';
+import type { ShakaProvider } from './shaka/provider';
 import type { VideoProvider } from './video/provider';
 import type { VimeoProvider } from './vimeo/provider';
 import type { YouTubeProvider } from './youtube/provider';
@@ -18,6 +19,7 @@ export type AnyMediaProvider =
   | ({ type: 'video' } & VideoProvider)
   | ({ type: 'hls' } & HLSProvider)
   | ({ type: 'dash' } & DASHProvider)
+  | ({ type: 'shaka' } & ShakaProvider)
   | ({ type: 'youtube' } & YouTubeProvider)
   | ({ type: 'vimeo' } & VimeoProvider)
   | ({ type: 'google-cast' } & GoogleCastProvider);

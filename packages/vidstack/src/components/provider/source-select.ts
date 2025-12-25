@@ -15,6 +15,7 @@ import { isVideoQualitySrc, type Src } from '../../core/api/src-types';
 import { AudioProviderLoader } from '../../providers/audio/loader';
 import { DASHProviderLoader } from '../../providers/dash/loader';
 import { HLSProviderLoader } from '../../providers/hls/loader';
+import { ShakaProviderLoader } from '../../providers/shaka/loader';
 import type { MediaProviderLoader } from '../../providers/types';
 import { VideoProviderLoader } from '../../providers/video/loader';
 import { VimeoProviderLoader } from '../../providers/vimeo/loader';
@@ -50,6 +51,7 @@ export class SourceSelection {
 
     const DASH_LOADER = new DASHProviderLoader(),
       HLS_LOADER = new HLSProviderLoader(),
+      SHAKA_LOADER = new ShakaProviderLoader(),
       VIDEO_LOADER = new VideoProviderLoader(),
       AUDIO_LOADER = new AudioProviderLoader(),
       YOUTUBE_LOADER = new YouTubeProviderLoader(),
@@ -60,8 +62,24 @@ export class SourceSelection {
       const remoteLoader = media.$state.remotePlaybackLoader();
 
       const loaders = media.$props.preferNativeHLS()
-        ? [VIDEO_LOADER, AUDIO_LOADER, DASH_LOADER, HLS_LOADER, ...EMBED_LOADERS, ...customLoaders]
-        : [HLS_LOADER, VIDEO_LOADER, AUDIO_LOADER, DASH_LOADER, ...EMBED_LOADERS, ...customLoaders];
+        ? [
+            VIDEO_LOADER,
+            AUDIO_LOADER,
+            SHAKA_LOADER,
+            DASH_LOADER,
+            HLS_LOADER,
+            ...EMBED_LOADERS,
+            ...customLoaders,
+          ]
+        : [
+            SHAKA_LOADER,
+            HLS_LOADER,
+            VIDEO_LOADER,
+            AUDIO_LOADER,
+            DASH_LOADER,
+            ...EMBED_LOADERS,
+            ...customLoaders,
+          ];
 
       return remoteLoader ? [remoteLoader, ...loaders] : loaders;
     });
