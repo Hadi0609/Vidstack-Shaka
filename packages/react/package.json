@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.10",
-    "media-captions": "^1.0.4"
+    "media-captions": "^1.0.4",
+    "media-icons": "^1.1.5"
   },
   "devDependencies": {
     "@maverick-js/cli": "0.43.2",
@@ -46,7 +47,6 @@
     "get-tsconfig": "^4.7.6",
     "magic-string": "^0.30.11",
     "maverick.js": "0.43.2",
-    "media-icons": "^1.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "remotion": "4.0.193",
