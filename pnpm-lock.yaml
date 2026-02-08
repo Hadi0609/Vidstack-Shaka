@@ -74,6 +74,9 @@ importers:
       media-captions:
         specifier: ^1.0.4
         version: 1.0.4
+      media-icons:
+        specifier: ^1.1.5
+        version: 1.1.5
     devDependencies:
       '@maverick-js/cli':
         specifier: 0.43.2
@@ -108,9 +111,6 @@ importers:
       maverick.js:
         specifier: 0.43.2
         version: 0.43.2
-      media-icons:
-        specifier: ^1.1.5
-        version: 1.1.5
       react:
         specifier: ^19.0.0
         version: 19.2.3
@@ -3827,7 +3827,6 @@ packages:
   /media-icons@1.1.5:
     resolution: {integrity: sha512-zu3CjKRs63ybLLWPomRRgTDyYiSrk2bRRgw97ZmN3FGXuo9qUUhBSfYwnjmvSdLG2JOJfAwzDz99bPATSY81DQ==}
     engines: {node: '>=16'}
-    dev: true
 
   /media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}

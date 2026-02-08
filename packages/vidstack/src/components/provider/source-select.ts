@@ -278,10 +278,26 @@ export class SourceSelection {
     if (this.#media.$state.canLoad()) {
       const abort = new AbortController();
 
-      if (isHLSSrc(source)) {
-        // Determined using `HLSProvider` if `hls.js` supported.
-        if (preferNativeHLS || !isHLSSupported()) {
-          resolveStreamTypeFromHLSManifest(source.src as string, {
+      // Skip stream-type processing if source is empty/null.
+      // This allows manual loading via provider instance (e.g., shakaInstance.load())
+      // without racing with Vidstack's stream type detection.
+      const hasSource = source.src && isString(source.src) && source.src.length > 0;
+
+      if (hasSource) {
+        if (isHLSSrc(source)) {
+          // Determined using `HLSProvider` if `hls.js` supported.
+          if (preferNativeHLS || !isHLSSupported()) {
+            resolveStreamTypeFromHLSManifest(source.src as string, {
+              credentials: getRequestCredentials(crossOrigin),
+              signal: abort.signal,
+            })
+              .then((streamType) => {
+                this.#media.notify('stream-type-change', streamType);
+              })
+              .catch(noop);
+          }
+        } else if (isDASHSrc(source)) {
+          resolveStreamTypeFromDASHManifest(source.src as string, {
             credentials: getRequestCredentials(crossOrigin),
             signal: abort.signal,
           })
@@ -289,18 +305,9 @@ export class SourceSelection {
               this.#media.notify('stream-type-change', streamType);
             })
             .catch(noop);
+        } else {
+          this.#media.notify('stream-type-change', 'on-demand');
         }
-      } else if (isDASHSrc(source)) {
-        resolveStreamTypeFromDASHManifest(source.src as string, {
-          credentials: getRequestCredentials(crossOrigin),
-          signal: abort.signal,
-        })
-          .then((streamType) => {
-            this.#media.notify('stream-type-change', streamType);
-          })
-          .catch(noop);
-      } else {
-        this.#media.notify('stream-type-change', 'on-demand');
       }
 
       peek(() => {
